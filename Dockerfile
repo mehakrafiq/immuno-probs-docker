@@ -1,6 +1,3 @@
-# Let there be an input argument for selecting the ImmunoProbs version.
-ARG immuno_probs_version
-
 # Fetch latest ubuntu image for the ImmunoProbs image build.
 FROM ubuntu:latest
 
@@ -13,9 +10,6 @@ RUN apt-get update \
         python-pip \
         unzip \
         wget
-
-# Install given version of ImmunoProbs.
-RUN pip install 'immuno-probs==$immuno_probs_version'
 
 # Download a version of IGoR, unpack it and compile.
 RUN mkdir -p /usr/src \
@@ -33,6 +27,10 @@ COPY tutorial_data.zip /
 RUN mkdir -p /tutorial_data \
     && unzip tutorial_data.zip -d /tutorial_data \
     && rm tutorial_data.zip
+
+# Install given version of ImmunoProbs.
+ARG VERSION
+RUN pip install immuno-probs==$VERSION
 
 # Specify default setting to be the ImmunoProbs docker image execution.
 WORKDIR /tmp/

@@ -6,6 +6,6 @@ ImmunoProbs and its dependencies bundled together in a single Docker image.
 Development
 ^^^^^^^^^^^
 
-If you would like to see new features, please open a new `issue <https://github.com/penuts7644/immuno-probs-docker/issues/new>`__.
-
-It is also possible to help out with the development by forking this project and creating a `pull request <https://github.com/penuts7644/immuno-probs-docker/compare>`__.
+Use ``pip search immuno-probs`` to see what the latest version is of
+ImmunoProbs. Build a new Docker image for the respective version with
+``make build v=<*.*.*>`` and deploy the new build with ``make deploy v=<*.*.*>``.

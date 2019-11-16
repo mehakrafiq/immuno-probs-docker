@@ -4,8 +4,6 @@
 ##    image. Copyright (C) 2019 Wout van Helvoirt
 ##
 
-VERSION = $(shell pip search immuno-probs | cut -d ')' -f 1 | cut -d '(' -f 2)
-
 default: help
 
 ##	COMMANDS
@@ -17,16 +15,14 @@ default: help
 help:
 	@grep '^##.*' ./Makefile
 
-##		make build
+##		make build v=<*.*.*>
 ##			Build a docker image of all executables and tag the images.
 ##
 build:
-	docker build --build-arg immuno_probs_version=$(VERSION) -t docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:$(VERSION) .
-	&& docker tag docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:$(VERSION) docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:latest
+	if [ -z "$v" ]; then echo "Argument missing or empty: 'v=*.*.*'"; else docker build --build-arg VERSION=$(v) -t docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:$(v) . && docker tag docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:$(v) docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:latest; fi
 
-##		make deploy
+##		make deploy v=<*.*.*>
 ##			Deploy the ImmunoProbs docker images (<version> and 'latest').
 ##
 deploy:
-	docker push docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:$(VERSION)
-	&& docker push docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:latest
+	if [ -z "$v" ]; then echo "Argument missing or empty: 'v=*.*.*'"; else docker push docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:$(v) && docker push docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:latest; fi
