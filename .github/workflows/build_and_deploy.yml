@@ -3,7 +3,7 @@ name: build_and_deploy
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - 'v*'
 
 jobs:
   build_and_deploy:
@@ -12,9 +12,10 @@ jobs:
 
     steps:
 
-    - uses: actions/checkout@v1
+    - name: Checkout branch
+      uses: actions/checkout@v1
 
-    - name: Set enviroment
+    - name: Set enviroment variable
       run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:11})
 
     - name: Build the Docker image
