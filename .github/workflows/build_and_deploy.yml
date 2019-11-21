@@ -19,7 +19,7 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        docker build --build-arg VERSION=${{ env.RELEASE_VERSION }} -t docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:${{ env.RELEASE_VERSION }} .
+        docker build -t docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:${{ env.RELEASE_VERSION }} .
         docker tag docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:${{ env.RELEASE_VERSION }} docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:latest
 
     - name: Deploy the Docker image
