@@ -19,7 +19,7 @@ jobs:
 
     - name: Build release notes
       run: |
-        echo 'Changes in this release' > change-log.txt
+        echo '### Changes in this release:' > change-log.txt
         git log ${{ env.PREVIOUS_VERSION }}..HEAD --pretty=format:"- %s" -i -E >> change-log.txt
 
     - name: Create GitHub release
