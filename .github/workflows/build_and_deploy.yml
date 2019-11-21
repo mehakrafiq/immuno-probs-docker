@@ -1,0 +1,29 @@
+name: build_and_deploy
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build_and_deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v1
+
+    - name: Set enviroment
+      run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:11})
+
+    - name: Build the Docker image
+      run: |
+        docker build --build-arg VERSION=${{ env.RELEASE_VERSION }} -t docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:${{ env.RELEASE_VERSION }} .
+        docker tag docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:${{ env.RELEASE_VERSION }} docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:latest
+
+    - name: Deploy the Docker image
+      run: |
+        docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+        docker push docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:${{ env.RELEASE_VERSION }}
+        docker push docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:latest

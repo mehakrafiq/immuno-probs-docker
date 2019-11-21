@@ -1,0 +1,27 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v1
+
+    - name: Set enviroment
+      run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:11})
+
+    - name: Create GitHub release
+      uses: softprops/action-gh-release@v1
+      with:
+        body: |
+          Changes in this Release:
+          - Updated the image supplied version of ImmunoProbs to ${{ env.RELEASE_VERSION }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
