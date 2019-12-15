@@ -1,7 +1,7 @@
 ImmunoProbs Docker
 ==================
 
-`ImmunoProbs <https://github.com/penuts7644/ImmunoProbs>`__ and its dependencies bundled together in a single Docker image.
+`ImmunoProbs <https://github.com/penuts7644/immuno-probs>`__ and its dependencies bundled together in a single Docker image.
 
 
 Getting started
@@ -92,7 +92,7 @@ Similar as with the VDJ sequence evaluation, but now we are using CDR3 input seq
 
     immuno-probs \
       evaluate \
-        -model tutorial-model \
+        -model human-t-beta \
         -seqs <CDR3 SEQUENCES> \
         -cdr3
 
