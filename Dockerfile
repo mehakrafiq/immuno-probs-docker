@@ -29,7 +29,7 @@ RUN mkdir -p /tutorial_data \
     && rm tutorial_data.zip
 
 # Install given version of ImmunoProbs.
-RUN pip install immuno-probs==0.2.0
+RUN pip install immuno-probs==0.2.1
 
 # Specify default setting to be the ImmunoProbs docker image execution.
 WORKDIR /tmp/
