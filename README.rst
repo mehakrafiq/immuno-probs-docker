@@ -11,7 +11,7 @@ It is also possible to use a Docker image of ImmunoProbs with all necessary requ
 
 .. code-block:: none
 
-    docker pull docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs
+    docker pull docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:0.2.1
 
 Now you can use the ImmunoProbs image however you like (through calling ImmunoProbs directly or by opening an interactive session in the bash shell).
 
@@ -19,7 +19,7 @@ You can also execute the ImmunoProbs image while using files in your local machi
 
 .. code-block:: none
 
-    docker run --rm -v "$PWD":/tmp docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs \
+    docker run --rm -v "$PWD":/tmp docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:0.2.1 \
       immuno-probs \
         [TOOL NAME] \
           <TOOL OPTIONS>
@@ -40,7 +40,7 @@ All commands below will be run inside the Docker image container. Log into the c
 
 .. code-block:: none
 
-    docker run --rm -it docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs bash
+    docker run --rm -it docker.pkg.github.com/penuts7644/immuno-probs-docker/immuno-probs:0.2.1 bash
 
 You can exit the terminal inside the container with ``exit``. The container is removed after exiting because of the ``--rm`` flag.
 
